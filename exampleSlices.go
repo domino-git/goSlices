@@ -28,6 +28,19 @@ func PrintSlice(slice []byte) {
 	fmt.Printf("slice[3:5] %d\n", slice[3:5]) // slice[3:5] [4 5]
 }
 
+func RemoveByte(slice []byte, index int) (int, []byte) {
+	var rc int
+	slice_len := len(slice)
+	if index > slice_len {
+		fmt.Println("Index out of a range.")
+		rc = -1
+	} else {
+		slice = append(slice[:index], slice[index+1:]...)
+		rc = 0
+	}
+	return rc, slice
+}
+
 func main() {
 	fmt.Println("Below is presented some information about slices in Goland.")
 
@@ -42,4 +55,7 @@ func main() {
 	slice_3 = AppendByte(slice_1, slice_2...)
 	fmt.Println(slice_3)
 	PrintSlice(slice_4)
+	fmt.Println(slice_4)
+	_, slice_4 = RemoveByte(slice_4, 8)
+	fmt.Println(slice_4)
 }
